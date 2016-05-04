@@ -3,8 +3,9 @@
 from time import time
 
 start = time()
+primes ={}
 
-def prime(n):
+def getprime(n):
     n = abs(int(n))
     
     if n < 2:
@@ -17,6 +18,14 @@ def prime(n):
         if n % x == 0:
             return False
     return True
+
+def prime(num):
+    try:
+        return primes[num]
+    except:
+        res = getprime(num)
+        primes[num] = res
+        return res
 
 def c(x, y, depth):
     num = depth**2 + depth * x + y
