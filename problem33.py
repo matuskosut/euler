@@ -23,7 +23,7 @@ def reduc(num,den):
     if (float(den) == 0.0) | (d == 0.0):
         return False
     
-    if (float(num)/float(den) == c/d) & (num != c) & (den != d):
+    if (float(num)/float(den) == c/d) & (num != c):
         return True
     else:
         return False
