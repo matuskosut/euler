@@ -1,28 +1,23 @@
 from time import time
 start = time()
-
-primes = set()
-cumsum = [0]
 roof = 1000000
 
-def is_prime(n):    
-    if n < 2:
-        return False
-    if n == 2:
-        return True
-    if not n & 1:
-        return False
-    for x in range(3, int(n**0.5) + 1, 2):
-        if n % x == 0:
-            return False
-    return True
+def primes(n):
+    sieve = [True] * n
+    for i in xrange(3,int(n**0.5)+1,2):
+        if sieve[i]:
+            sieve[i*i::2*i]=[False]*((n-i*i-1)/(2*i)+1)
+    return [2] + [i for i in xrange(3,n,2) if sieve[i]]
 
-cs = 0
-for i in xrange(0,roof):
-    if is_prime(i):
-        cs += i
-        primes.add(i)
-        cumsum.append(cs)
+primes = primes(1000000)
+cumsum = [0]
+
+suma = 0
+for p in primes:
+    suma += p
+    cumsum.append(suma)
+    
+primes = set(primes)
 
 print "Init: {0} secs".format(time()-start)
 
